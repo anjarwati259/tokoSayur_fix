@@ -14,7 +14,12 @@
 			<?php echo $title ?>
 		</span>
 	</div>
-
+	<br><br>
+	<?php if($this->session->flashdata('sukses')){
+		echo '<div class="alert alert-warning">';
+		echo $this->session->flashdata('sukses');
+		echo '</div>';
+	} ?>
 	<!-- Product Detail -->
 	<div class="container bgwhite p-t-35 p-b-80">
 		<div class="flex-w flex-sb">
@@ -25,7 +30,7 @@
 					<div class="slick3">
 						<div class="item-slick3" data-thumb="<?php echo base_url('assets/upload/image/thumbs/'.$product->gambar) ?>">
 							<div class="wrap-pic-w">
-								<img src="<?php echo base_url('assets/upload/image/'.$product->gambar) ?>" alt="<?php echo $product->nama_product ?>">
+								<img src="<?php echo base_url('assets/upload/image/thumbs/'.$product->gambar) ?>" alt="<?php echo $product->nama_product ?>">
 							</div>
 						</div>
 						<?php 
@@ -34,7 +39,7 @@
 						 ?>
 						<div class="item-slick3" data-thumb="<?php echo base_url('assets/upload/image/thumbs/'.$gambar->gambar) ?>">
 							<div class="wrap-pic-w">
-								<img src="<?php echo base_url('assets/upload/image/'.$gambar->gambar) ?>" alt="<?php echo $gambar->judul_gambar ?>">
+								<img src="<?php echo base_url('assets/upload/image/thumbs/'.$gambar->gambar) ?>" alt="<?php echo $gambar->judul_gambar ?>">
 							</div>
 						</div>
 						<?php 
@@ -57,16 +62,26 @@
 					//echo form_hidden('qty', 1);
 					echo form_hidden('price', $product->harga);
 					echo form_hidden('name', $product->nama_product);
+					echo form_hidden('id_user', $product->id_user);
 					//elemen redirect
 					echo form_hidden('redirect_page', str_replace('index.php/', '', current_url()));
 					?>
 				<span class="m-text14">
 					IDR <?php echo number_format($product->harga,'0',',','.') ?>
 				</span>
-
 				<p class="s-text8 p-t-10">
 					<?php echo $product->keterangan ?>
 				</p>
+				<div class="p-t-33 p-b-60">
+				<div class="flex-m flex-w">
+					<div class="s-text15 w-size15 t-center">
+						Stok
+					</div>
+
+					<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
+						<?php echo $product->stok ?>
+					</div>
+				</div>
 
 					<div class="flex-r-m flex-w p-t-10">
 						<div class="w-size16 flex-m flex-w">
@@ -90,6 +105,7 @@
 							</div>
 						</div>
 					</div>
+				</div>
 				</div>
 				<?php echo form_close(); ?>
 			</div>
@@ -126,7 +142,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-							<img src="<?php echo base_url('assets/upload/image/'.$product_related->gambar) ?>" alt="<?php echo $product_related->nama_product ?>">
+							<img src="<?php echo base_url('assets/upload/image/thumbs/'.$product_related->gambar) ?>" alt="<?php echo $product_related->nama_product ?>">
 
 							<div class="block2-overlay trans-0-4">
 								<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">

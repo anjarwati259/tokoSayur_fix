@@ -30,6 +30,7 @@
 			//$total 		= $this->cart->total() * 100;
 			//form update
 			echo form_open(base_url('belanja/update_cart/'.$keranjang['rowid']));
+			echo form_hidden('id', $product->id_product);
 		 ?>
 		<tr class="table-row">
 			<td class="column-1">

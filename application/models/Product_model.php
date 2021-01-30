@@ -70,6 +70,14 @@ class Product_model extends CI_Model
 		$query = $this->db->get();
 		return $query->result();
 	}
+	public function listing_product($id_product){
+		$this->db->select('*');
+		$this->db->from('tb_product');
+		$this->db->where('id_product', $id_product);
+		$this->db->order_by('id_product','desc');
+		$query = $this->db->get();
+		return $query->row();
+	}
 	//listing read product
 	public function read($slug_product){
 		$this->db->select('tb_product.*,

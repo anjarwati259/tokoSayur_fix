@@ -129,6 +129,12 @@ class Belanja extends CI_Controller
 	//tambahkan ke keranjang belanja
 	public function add()
 	{
+		$id_product = $this->input->post('id');
+		$product = $this->product_model->listing_product($id_product);
+		if($this->input->post('qty') > $product->stok ){
+			$this->session->set_flashdata('sukses','Belanja Anda melebihi stok');
+			redirect($this->input->post('redirect_page'),'refresh');
+		}else{
 		//ambil data dari form
 		$id 			= $this->input->post('id');
 		$id_user		= $this->input->post('id_user');
@@ -141,23 +147,30 @@ class Belanja extends CI_Controller
 						'qty'	=> $qty,
 						'price'	=> $price,
 						'name'	=> $name,
-						'coupon' => $id_user
+						'coupon'=> $id_user
 						);
 		$this->cart->insert($data);
 		//redirect page
 		redirect($redirect_page,'refresh');
 	}
+	}
 	//update cart
 	public function update_cart($rowid)
 	{
-		//jika ada data rowid
-		if($rowid)
-		{
+		$id_product = $this->input->post('id');
+		$product = $this->product_model->listing_product($id_product);
+		$qty = $this->input->post('qty');
+		//jika melebihi stok
+		if($this->input->post('qty') > $product->stok ){
+		 	$this->session->set_flashdata('sukses','Belanja Anda melebihi stok');
+			redirect(base_url('belanja'),'refresh');
+		}elseif ($rowid) {
+
 			$data = array(	'rowid'		=>$rowid,
 							'qty'		=>$this->input->post('qty')
 							);
 			$this->cart->update($data);
-			$this->session->set_flashdata('sukses','Data keranjang telah diupdate');
+			$this->session->set_flashdata('sukses','Belanja Anda Berhasil diupdate');
 			redirect(base_url('belanja'),'refresh');
 		}else{
 			//jika ga ada row id
@@ -167,6 +180,7 @@ class Belanja extends CI_Controller
 	//hapus semua isi keranjang belanja
 	public function hapus($rowid='')
 	{
+		
 		if($rowid){
 			//hapus per item
 			$this->cart->remove($rowid);
