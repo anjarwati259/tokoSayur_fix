@@ -18,7 +18,7 @@ class Tengkulak extends CI_Controller
 
 		$data = array(	'title'		=> 'Data Tengkulak',
 						'tengkulak'	=> $tengkulak,
-						'isi'		=> 'tengkulak/profil/'
+						'isi'		=> 'tengkulak/list'
 						);
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
 	}

@@ -63,7 +63,10 @@
 	</tr>
 	<tr>
 		<td>Pembayaran ke rekening</td>
-		<td>: <?php echo $rekening->nama_bank ?> No. Rekening: <?php echo $rekening->nomor_rekening ?> a.n <?php echo $rekening->nama_pemilik ?></td>
+		<td>: <?php if($detail_transaksi->status_bayar =="Sudah Bayar"){ echo $rekening->nama_bank ?> No. Rekening: <?php echo $rekening->nomor_rekening ?> a.n <?php echo $rekening->nama_pemilik ?>
+		<?php }else{
+			echo "-";
+		} ?></td>
 	</tr>
 
 </thead>
@@ -86,9 +89,9 @@
 		<td><?php echo $i++; ?></td>
 		<td><?php echo $transaksi->kode_transaksi ?></td>
 		<td><?php echo $transaksi->nama_product ?></td>
-		<td><?php echo "Rp.".number_format($transaksi->jumlah) ?></td>
-		<td><?php echo $transaksi->harga ?></td>
-		<td><?php echo $transaksi->total_harga ?></td>
+		<td><?php echo $transaksi->jumlah ?></td>
+		<td><?php echo "Rp.".number_format($transaksi->harga, '0',',','.') ?></td>
+		<td><?php echo "Rp.".number_format($transaksi->total_harga, '0',',','.') ?></td>
 	</tr>
 <?php } ?>
 </tbody>

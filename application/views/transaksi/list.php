@@ -211,7 +211,7 @@
                       <th>: <?php echo $trans->expedisi ?></th>
                     </tr>
                     <tr>
-                      <th width="25%">Expedisi</th>
+                      <th width="25%">Ongkos Kirim</th>
                       <th>: Rp. <?php echo number_format($trans->ongkir) ?></th>
                     </tr>
                     <tr>

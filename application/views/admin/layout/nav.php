@@ -39,6 +39,8 @@
             <li><a href="<?php echo base_url() ?>admin/petani"><i class="fa fa-tags"></i> Data Petani</a></li>
           </ul>
         </li>
+        <!-- laporan -->
+        <li><a href="<?php echo base_url('laporan') ?>"><i class="fa fa-file"></i> <span>LAPORAN</span></a></li>
 
         <!-- MENU USER -->
         <li class="treeview">
@@ -54,7 +56,7 @@
           </ul>
         </li>
 
-        <!-- MENU USER -->
+        <!-- MENU KONFIGURASI -->
         <li class="treeview">
           <a href="#">
             <i class="fa fa-wrench"></i> <span>KONFIGURASI</span>
@@ -103,6 +105,8 @@
             <li><a href="<?php echo base_url('transaksi/transaksi_tengkulak') ?>"><i class="fa fa-tags"></i> Semua Produk</a></li>
           </ul>
         </li>
+
+        <li><a href="<?php echo base_url('laporan') ?>"><i class="fa fa-file"></i> <span>LAPORAN</span></a></li>
 
         <li class="treeview">
           <a href="#">
